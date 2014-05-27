@@ -6,8 +6,8 @@ block content
 
   else
     .jumbotron
-      h1 Hello, Maki.
-      p A simple framework for hand-rolling your web application.
+      h1 Roll n00bs, earn BTC.
+      p Win Bitcoin from Starcraft games.
 
     .row
       .col-md-4
@@ -17,10 +17,16 @@ block content
         h2 Tagline 2.
         p What else can sell your app?
       .col-md-4
-        h2 Already registered?
-        include forms/login
+        h2 Login
+        
+        form(action="/auth/battlenet", method="post")
+          .form-group
+            label(for="battlenetURL") Battlenet URL
+            input(type="text", name="battlenetURL")
+        
+        //-include forms/login
 
-    .row
+    //-.row
       h3 Features
       hr
 
@@ -31,7 +37,7 @@ block content
       p We've built authentication into the stack (using PassportJS), including username and password auth, and OAuth using providers like Facebook and Twitter.  Spend your time on your app, not third-party auth.
 
 
-    .row
+    //-.row
       h3 Documentation
       h4 UI
       p We're using Bootstrap for our base CSS framework, giving us a generally semantic way of building interface elements.  In addition, we're using Jade to simplify the construction of HTML using simple style rules.

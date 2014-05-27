@@ -1,0 +1,7 @@
+extends layout
+
+block content
+  h1 Matches
+  
+  for match in matches
+    pre #{JSON.stringify(match)}

@@ -8,8 +8,20 @@ var mongoose = require('mongoose')
 // and moreover, their type.
 var UserSchema = new Schema({
     username: { type: String, required: true }
-  , email: { type: String, required: true }
+  //, email: { type: String, required: true }
   , created: { type: Date, required: true, default: Date.now }
+  , matches: [ new Schema({
+        _match:  { type: ObjectId , ref: 'Match' , required: true }
+      , date:    { type: Number , required: true }
+      , outcome: { type: String , enum: ['WIN', 'LOSS'] , required: true }
+    }) ]
+  , profiles: {
+      battlenet: [ new Schema({
+          id: { type: Number , required: true }
+        , realm: { type: Number , required: true }
+        , name: { type: String , required: true }
+      }) ]
+    }
 });
 
 // attach the passport fields to the model

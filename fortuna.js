@@ -11,11 +11,17 @@ var express = require('express')
 /* Models represent the data your application keeps. */
 /* You'll need at least the User model if you want to 
 	allow users to login */
-User = People = require('./models/User').User;
+User    = Person = People = require('./models/User').User;
+Match   = require('./models/Match').Match;
 //Thing   = require('./models/Thing').Thing;
 
 pages    = require('./controllers/pages');
 people   = require('./controllers/people');
+matches  = require('./controllers/matches');
+
+_ = require('underscore');
+rest = require('restler');
+async = require('async');
 
 // make the HTML output readible, for designers. :)
 app.locals.pretty = true;
@@ -39,6 +45,7 @@ app.use(express.methodOverride());
 app.use(express.session({
   secret: config.cookieSecret
 }));
+app.use(flashify);
 
 /* Configure the registration and login system */
 app.use(passport.initialize());
@@ -126,8 +133,15 @@ app.get('/logout', function(req, res, next) {
 });
 
 app.get('/examples',             pages.examples );
+
+app.get('/matches' , matches.list );
+
 app.get('/people',               people.list );
-app.get('/people/:usernameSlug', people.view );
+app.get('/people/:usernameSlug', people.viewBySlug );
+app.get('/people/:personID',     people.view );
+app.get('/people/:personID/matches',     people.view );
+
+app.post('/auth/battlenet', people.battlenetLogin );
 
 app.get('*', function(req, res) {
   res.status(404).render('404');
@@ -136,4 +150,3 @@ app.get('*', function(req, res) {
 app.listen( config.appPort , function() {
   console.log('Demo application is now listening on http://localhost:' + config.appPort + ' ...');
 });
-
