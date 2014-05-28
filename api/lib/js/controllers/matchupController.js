@@ -120,7 +120,7 @@ function spec(b) {
       if (err) console.log(err);
       if(matchup){
         // Update the matchup (until we build a cron job to do it).
-        if(matchup.start < Date.now() && matchup.players.length > 0) {
+        if(matchup.start < Date.now() && matchup.players.length > 1) {
           matchupMonitor.updateMatchup(matchup, function(err, matchup) {
             if (err) {
               console.log(err);

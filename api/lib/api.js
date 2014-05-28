@@ -1,11 +1,11 @@
 function spec(b) {
   var http = require('http');
   var path = require('path');
-  var config = require('./api/config');
+  var config = require('./js/config');
 
   var API = function() {
-    var server = require('./api/server');
-    var router = require('./api/router').new();
+    var server = require('./js/server');
+    var router = require('./js/router').new();
     console.log('Started API Server listening on port ' + config.port + '.');
   }
 

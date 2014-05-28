@@ -36,7 +36,7 @@ function spec(b) {
     var self = this;
     var keys = _.keys(matches);
     keys.forEach(function(matchTime) {
-      if(!matches[matchTime] || matchTime == self.start) {
+      if(!matches[matchTime] || new Date(matchTime) < self.start) {
         delete matches[matchTime];
       } else {
         if(!self.results) {
@@ -53,7 +53,6 @@ function spec(b) {
             self.players.forEach(function(player) {
               if (player.wins >= self.winCondition) {
                 self.ended = true;
-                self.winners.push(player);
               }
             });
           });

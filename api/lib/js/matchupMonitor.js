@@ -99,7 +99,7 @@ function spec(b) {
     // Consolidate match data.
     playerResults.forEach(function(playerResult) {
       playerResult.matches.forEach(function(match) {
-        if(_.contains(prunedMatches, match.date)) {
+        if(prunedMatches[match.date]) {
           prunedMatches[match.date].results.push({
             player: playerResult.player,
             result: match.decision
