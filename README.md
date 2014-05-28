@@ -1,4 +1,4 @@
 fortuna
 =======
 
-sc2 bitcoin wagering
+Crowdfunded Bitcoin Tournaments and Showmatches
